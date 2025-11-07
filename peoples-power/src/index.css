@@ -1,0 +1,228 @@
+/* Tailwind base */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Design tokens ---------- */
+:root {
+  --bg: 248 248 255;        /* ghost white */
+  --fg: 18 20 23;
+  --muted: 110 115 128;
+  --primary: 42 99 255;     /* royal-ish blue */
+  --primary-2: 99 142 255;  /* lighter blend */
+  --accent: 99 255 210;     /* mint */
+  --card: 255 255 255 / 0.7;
+  --ring: 42 99 255;
+  --shadow: 18 20 23 / 0.12;
+}
+
+:root.dark {
+  --bg: 12 14 18;
+  --fg: 235 238 243;
+  --muted: 150 156 170;
+  --primary: 126 155 255;
+  --primary-2: 66 96 255;
+  --accent: 99 255 210;
+  --card: 16 18 24 / 0.6;
+  --ring: 126 155 255;
+  --shadow: 0 0 0 / 0.0;
+}
+
+/* System dark mode fallback */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) { color-scheme: dark; }
+}
+
+/* ---------- Base layout ---------- */
+html, body {
+  height: 100%;
+}
+
+body {
+  @apply antialiased;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(99,142,255,.20), transparent 60%),
+    radial-gradient(900px 500px at 110% 10%, rgba(99,255,210,.15), transparent 60%),
+    radial-gradient(1200px 700px at 50% 120%, rgba(42,99,255,.15), transparent 60%),
+    rgb(var(--bg));
+  color: rgb(var(--fg));
+}
+
+/* Animated page accent behind header */
+.app-aurora {
+  position: fixed;
+  inset: -20% -10% auto -10%;
+  height: 42vmin;
+  filter: blur(40px);
+  pointer-events: none;
+  background:
+    conic-gradient(from 180deg at 50% 50%,
+      rgba(var(--primary), .25),
+      rgba(var(--accent), .18),
+      rgba(var(--primary-2), .22),
+      rgba(var(--primary), .25));
+  opacity: .6;
+  animation: floaty 22s ease-in-out infinite alternate;
+}
+
+@keyframes floaty {
+  0%   { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(12px) rotate(2deg); }
+}
+
+/* ---------- Re-usable surfaces ---------- */
+.container { @apply mx-auto max-w-3xl px-4; }
+
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.65)) , rgba(var(--card));
+  @apply rounded-2xl border border-white/30 p-5 shadow-[0_8px_30px_rgba(0,0,0,0.06)] backdrop-blur-md;
+}
+:root.dark .card {
+  background: linear-gradient(180deg, rgba(20,24,32,.85), rgba(16,20,28,.75)), rgba(var(--card));
+  @apply border-white/10 shadow-none;
+}
+
+/* Pop card on hover */
+.card:hover { transform: translateY(-1px); transition: transform .18s ease; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  @apply inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium select-none;
+  transition: all .18s ease;
+}
+
+.btn-primary {
+  color: white;
+  background: linear-gradient(180deg, rgb(var(--primary)) , rgb(var(--primary-2)));
+  box-shadow: 0 8px 18px rgba(42,99,255,.25);
+}
+.btn-primary:hover { filter: brightness(1.05); transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+
+.btn-outline {
+  @apply border bg-white/10;
+  border-color: rgb(var(--fg) / .12);
+}
+:root.dark .btn-outline { background: rgb(255 255 255 / .02); border-color: rgb(255 255 255 / .08); }
+.btn-outline:hover { background: rgb(255 255 255 / .18); }
+
+/* Primary link */
+.link {
+  color: rgb(var(--primary));
+  text-underline-offset: 3px;
+}
+.link:hover { text-decoration: underline; }
+
+/* ---------- Inputs ---------- */
+.input {
+  @apply w-full rounded-xl border px-3 py-3 bg-white/70;
+  border-color: rgb(0 0 0 / .08);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.6);
+}
+:root.dark .input {
+  @apply bg-white/5;
+  border-color: rgb(255 255 255 / .08);
+  box-shadow: none;
+  color: rgb(var(--fg));
+}
+
+.input:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgb(var(--ring) / .18),
+    0 1px 0 rgba(255,255,255,.5) inset;
+  border-color: rgb(var(--ring));
+}
+
+/* ---------- Badges ---------- */
+.badge { @apply rounded-full px-2.5 py-1 text-[11px] font-semibold tracking-wide; }
+.badge-success { background: #DCFCE7; color: #166534; }
+.badge-warn    { background: #FEF9C3; color: #854D0E; }
+.badge-danger  { background: #FEE2E2; color: #991B1B; }
+.badge-muted   { background: #E5E7EB; color: #374151; }
+:root.dark .badge-muted { background: rgb(255 255 255 / .08); color: rgb(255 255 255 / .8); }
+
+/* ---------- Header/Footer ---------- */
+.site-header {
+  backdrop-filter: saturate(140%) blur(8px);
+  background: linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.3));
+  @apply sticky top-0 z-40 border-b border-white/30;
+}
+:root.dark .site-header {
+  background: linear-gradient(180deg, rgba(16,20,28,.7), rgba(16,20,28,.4));
+  @apply border-white/10;
+}
+
+.site-footer { @apply border-t border-white/30 text-xs text-gray-500 py-8; }
+:root.dark .site-footer { @apply border-white/10 text-gray-400; }
+
+/* ---------- Typography polish ---------- */
+h1, h2, h3 { letter-spacing: -.02em; }
+h1 { @apply text-3xl md:text-4xl font-semibold; }
+h2 { @apply text-xl md:text-2xl font-semibold; }
+.subtle { color: rgb(var(--muted)); }
+
+/* ---------- Skeletons ---------- */
+.skel { position: relative; overflow: hidden; background: rgba(120,125,140,.16); }
+.skel::after {
+  content: "";
+  position: absolute; inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+  animation: shimmer 1.2s infinite;
+}
+@keyframes shimmer { 100% { transform: translateX(100%); } }
+
+/* ---------- Cards used in Results ---------- */
+.ai-brief-title { @apply text-xl font-semibold; }
+.source-list a { @apply underline text-sm; }
+
+/* Candidate grid */
+.candidate-grid { @apply mt-3 grid gap-3 md:grid-cols-2; }
+
+/* ---------- Tooltips (for future) ---------- */
+.tooltip {
+  position: relative;
+}
+.tooltip:hover::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: rgb(16 18 24 / .9);
+  color: white;
+  padding: .4rem .6rem;
+  border-radius: .5rem;
+  font-size: 11px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.24);
+}
+
+/* ---------- Motion safety ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ---------- Helper utilities layered on Tailwind ---------- */
+@layer utilities {
+  .glass { backdrop-filter: blur(8px) saturate(120%); background: rgba(255,255,255,.5); }
+  .glass-dark { backdrop-filter: blur(10px); background: rgba(12,14,18,.5); }
+  .soft-shadow { box-shadow: 0 10px 30px rgba(var(--fg) / .08); }
+  .ring-focus { box-shadow: 0 0 0 3px rgb(var(--ring) / .2); }
+}
+
+/* ---------- Optional: page hero gradient header ---------- */
+.hero {
+  border-radius: 20px;
+  background:
+    radial-gradient(1200px 200px at 50% -20%, rgba(var(--primary), .35), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,.4));
+  @apply p-6 md:p-8 border border-white/30 backdrop-blur-md;
+}
+:root.dark .hero {
+  background:
+    radial-gradient(1200px 200px at 50% -20%, rgba(var(--primary-2), .25), transparent 60%),
+    linear-gradient(180deg, rgba(16,20,28,.85), rgba(16,20,28,.55));
+  @apply border-white/10;
+}
