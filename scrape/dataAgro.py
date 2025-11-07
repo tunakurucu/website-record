@@ -28,18 +28,18 @@ def req(request_q, lan=None, country=None):
 
     articles = all_articles['articles']
     urls = [a['url'] for a in articles]
-    news_raw_txt = []
+    
+    with open("training.txt", 'a') as file:
+        for url in urls:
+            try:
+                resp = requests.get(url,  timeout=15)
+            except:
+                print("timeout")
+            soup = BeautifulSoup(resp.text, "lxml")
+            file.write(soup.get_text() + '\n')
+            print("running")
 
-    for url in urls:
-        try:
-            resp = requests.get(url,  timeout=15)
-        except:
-            print("timeout")
-        soup = BeautifulSoup(resp.text, "lxml")
-        news_raw_txt.append(soup.get_text())
-        print("running")
 
-    print(news_raw_txt)
 
 if "__main__" == __name__:
     req(request_q="New York")
