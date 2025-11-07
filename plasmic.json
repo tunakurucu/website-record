@@ -264,6 +264,33 @@
           "cssFilePath": "plasmic/peoples_power/PlasmicButton.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "2rS9lZvVnqgF",
+          "name": "TestHp",
+          "type": "managed",
+          "projectId": "fDd2G34bQHvh5ANU7bqHFd",
+          "renderModuleFilePath": "plasmic/peoples_power/PlasmicTestHp.jsx",
+          "importSpec": {
+            "modulePath": "TestHp.jsx"
+          },
+          "cssFilePath": "plasmic/peoples_power/PlasmicTestHp.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/test-hp"
+        },
+        {
+          "id": "H9upVDVV-cSX",
+          "name": "Button2",
+          "type": "managed",
+          "projectId": "fDd2G34bQHvh5ANU7bqHFd",
+          "renderModuleFilePath": "plasmic/peoples_power/PlasmicButton2.jsx",
+          "importSpec": {
+            "modulePath": "Button2.jsx"
+          },
+          "cssFilePath": "plasmic/peoples_power/PlasmicButton2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -293,6 +320,11 @@
           "id": "Tu6ZKL9BJiYy",
           "name": "Logo.png",
           "filePath": "plasmic/peoples_power/images/logoPng.png"
+        },
+        {
+          "id": "ivQRDbjFs5aW",
+          "name": "image 13",
+          "filePath": "plasmic/peoples_power/images/image13.svg"
         }
       ],
       "indirect": false,
