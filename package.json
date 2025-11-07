@@ -18,6 +18,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@plasmicapp/loader-nextjs": "^1.0.443",
     "openai": "^6.8.1"
   }
 }
