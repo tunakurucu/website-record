@@ -45,12 +45,6 @@ className="btn btn-outline rounded-full"
 </button>
 ))}
 </div>
-
-
-<section className="mt-10 space-y-2 text-sm text-gray-600">
-<p>Built for AI powered civic engagement with transparency and accessible design.</p>
-<p>Source links for every claim. Privacy first.</p>
-</section>
 </div>
 );
 }
