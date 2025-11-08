@@ -9,7 +9,7 @@ import sys
 
 load_dotenv()
 NEWS_API = os.getenv("NEWS_API")
-GOOG_API = os.getenv("GOOG_API")
+GOOG_API = os.getenv("SERP_API")
 
 def find_keys(obj, target_key):
     results = []
@@ -91,16 +91,16 @@ def req(request_q, lan="", country=""):
             except:
                 print("timeout")
             soup = BeautifulSoup(resp.text, "lxml")
+            for script in soup(["script", "style", "img", "a"]):
+                    script.extract()
+            txt : str = soup.get_text()
             try:
-                file.write(str({"content": soup.get_text()}))
+                build = "".join(c if (c.isalpha() or c.isnumeric() or c.isspace()) else " " for c in txt)
+                file.write(build)
+                print("running")
             except:
                 print("writing error")
-            print("running")
+            
 
 req("New York")
 
-def txtParse():
-    return
-
-if "__main__" == __name__:
-    req(sys.argv[0])

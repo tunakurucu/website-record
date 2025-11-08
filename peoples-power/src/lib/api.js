@@ -1,10 +1,10 @@
 import { PeoplePowerResponse, TopicQuery } from "./types";
-
-import { exec, spawn } from "child_process";
+import { spawn } from "child_process";
 import path from "path";
+import fs from "fs";
 
+const USE_MOCK = true;
 
-const USE_MOCK = false;
 
 export async function fetchPeoplePower(q) {
   if (USE_MOCK) return mockPeoplePower(q);
@@ -13,10 +13,10 @@ export async function fetchPeoplePower(q) {
     const scriptPath = path.join("scrape", "agent.py");
     const pythonProcess = spawn("python", [scriptPath, q.topic]);
 
-    let data = {};
+    let output = "";
 
     pythonProcess.stdout.on("data", (res) => {
-      data = res;
+      output += res.toString(); // accumulate chunks
     });
 
     pythonProcess.stderr.on("data", (res) => {
@@ -24,30 +24,31 @@ export async function fetchPeoplePower(q) {
     });
 
     pythonProcess.on("close", (code) => {
-      console.log(`child process exited with code ${code}`);
+      try {
+        const filePath = "response.json"
+        const raw = fs.readFileSync(filePath, "utf-8")
+        const json = JSON.parse(raw);
 
-      resolve({
-        brief: {
-          topic: q.topic,
-          data.summary,
-          data.keyPoints: [
-            "City council considered inclusionary zoning pilots",
-            "Nonprofits expanding housing vouchers",
-            "Transit oriented development tied to affordability targets",
-          ],
-          data.sources: [
-            { title:  },
-          ],
-        },
-        data.candidates: [],
-        data.plans: [],
-        data.events: [],
-      });
+        resolve({
+          brief: {
+            topic: q.topic,
+            summary: json.summary,
+            keyPoints: json.keyPoints,
+            sources: json.sources,
+          },
+          candidates: json.candidates,
+          plans: json.plans,
+          events: json.events,
+        });
+      } catch (err) {
+        reject(err);
+      }
     });
 
     pythonProcess.on("error", reject);
   });
 }
+
 
 
 async function mockPeoplePower(q) {
