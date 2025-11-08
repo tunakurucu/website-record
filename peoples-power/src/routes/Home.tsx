@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import logo from "../../../img folder/pp.png";
 
 
 export default function Home() {
@@ -21,9 +22,14 @@ const quick = ["Housing", "Public transit", "Public safety", "Education", "Envir
 
 return (
 <div className="mx-auto max-w-xl">
-<header className="mb-8">
-<h1 className="text-3xl font-semibold">People's Power</h1>
-<p className="text-sm text-gray-600">Turn your concern into informed local action.</p>
+<header className="mb-8 text-center">
+<img src={logo} alt="People's Power Logo" className="mx-auto h-16 w-auto mb-4" />
+<p className="text-sm text-gray-600">
+One of the best ways to support your community is to vote.
+</p>
+<p className="text-sm text-gray-600">
+An even better way is to vote informed.
+</p>
 </header>
 
 
@@ -45,12 +51,6 @@ className="btn btn-outline rounded-full"
 </button>
 ))}
 </div>
-
-
-<section className="mt-10 space-y-2 text-sm text-gray-600">
-<p>Built for AI powered civic engagement with transparency and accessible design.</p>
-<p>Source links for every claim. Privacy first.</p>
-</section>
 </div>
 );
 }
