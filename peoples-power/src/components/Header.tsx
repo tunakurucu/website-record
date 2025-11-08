@@ -17,8 +17,8 @@ return (
   <Link to="/contact" className="hover:underline">
     Contact
   </Link>
-  <Link to="/topics" className="hover:underline">
-    Topics
+  <Link to="/explore" className="hover:underline">
+    Explore
   </Link>
 </nav>
 </div>
