@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 from serpapi import GoogleSearch
 
 import os
-import sys
 
 load_dotenv()
 NEWS_API = os.getenv("NEWS_API")
