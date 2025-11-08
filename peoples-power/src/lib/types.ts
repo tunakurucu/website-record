@@ -29,14 +29,22 @@ stanceTag: "Supports" | "Opposes" | "Mixed" | "Unknown";
 
 
 export type CivicEvent = {
-id: string;
-title: string;
-startsAt: string; // ISO
-venue?: string;
-address?: string;
-distanceMiles?: number;
-type: "Debate" | "Rally" | "TownHall" | "Volunteer" | "Other";
-link?: string;
+	id: string;
+	title: string;
+	startsAt: string; // ISO
+	venue?: string;
+	address?: string;
+	distanceMiles?: number;
+	/* include Organization so mock data can represent nonprofits */
+	type: "Debate" | "Rally" | "TownHall" | "Volunteer" | "Organization" | "Other";
+	link?: string;
+	/* optional fields used when the event is an organization */
+	description?: string;
+	contact?: {
+		website?: string;
+		email?: string;
+		phone?: string;
+	};
 };
 
 

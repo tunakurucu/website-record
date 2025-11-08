@@ -32,10 +32,12 @@ return (
 
 
 <section className="space-y-3">
-<h2 className="text-xl font-semibold">Candidates</h2>
-{data.candidates.map((c) => (
-<CandidateCard key={c.id} candidate={c} />
-))}
+	<h2 className="text-xl font-semibold">Candidates</h2>
+	<div className="candidate-grid">
+		{data.candidates.map((c) => (
+			<CandidateCard key={c.id} candidate={c} />
+		))}
+	</div>
 </section>
 
 

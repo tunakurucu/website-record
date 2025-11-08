@@ -1,3 +1,7 @@
+import freddieImg from '../../../img folder/freddie.jpg';
+import aliceImg from '../../../img folder/alice.jpg';
+import matthewImg from '../../../img folder/matthew.jpg';
+
 const USE_MOCK = true;
 
 export async function fetchPeoplePower(q) {
@@ -24,42 +28,71 @@ async function mockPeoplePower(q) {
           title: "Metro Council advances housing package",
           url: "https://example.com/housing",
           outlet: "Local News",
-          publishedAt: new Date().toISOString(),
+          publishedAt: "2025-11-15T00:00:00.000Z",
         },
         {
           title: "Nashville affordability report",
           url: "https://example.com/report",
           outlet: "Civic Lab",
-          publishedAt: new Date().toISOString(),
+          publishedAt: "2025-11-15T00:00:00.000Z",
         },
       ],
     },
     candidates: [
       {
         id: "c1",
-        name: "Alex Rivera",
-        party: "Nonpartisan",
-        photoUrl: "https://placehold.co/96x96",
+        name: "Freddie O'Connell",
+        party: "Democratic",
+        photoUrl: freddieImg,
         stanceTag: "Supports",
         pastActions: [
           {
-            text: "Sponsored a pilot for inclusionary zoning in 2023",
-            sources: [
-              { title: "Pilot approved", url: "https://example.com/pilot", outlet: "City Desk", publishedAt: new Date().toISOString() },
-            ],
+            text: "Advocated for transit-oriented development",
+            sources: [],
           },
         ],
         plans: [
           {
-            text: "Expand affordable housing initiatives",
-            sources: [
-              {
-                title: "Housing initiatives report",
-                url: "https://example.com/housing-initiatives",
-                outlet: "City News",
-                publishedAt: new Date().toISOString(),
-              },
-            ],
+            text: "Increase affordable housing near transit corridors",
+            sources: [],
+          },
+        ],
+      },
+      {
+        id: "c2",
+        name: "Alice Rolli",
+        party: "Independent",
+        photoUrl: aliceImg,
+        stanceTag: "Mixed",
+        pastActions: [
+          {
+            text: "Worked on community zoning advisory boards",
+            sources: [],
+          },
+        ],
+        plans: [
+          {
+            text: "Pilot public-private partnership for workforce housing",
+            sources: [],
+          },
+        ],
+      },
+      {
+        id: "c3",
+        name: "Matthew Wiltshire",
+        party: "Nonpartisan",
+        photoUrl: matthewImg,
+        stanceTag: "Unknown",
+        pastActions: [
+          {
+            text: "Served on neighborhood planning committees",
+            sources: [],
+          },
+        ],
+        plans: [
+          {
+            text: "Support small-scale infill development",
+            sources: [],
           },
         ],
       },
@@ -68,18 +101,29 @@ async function mockPeoplePower(q) {
       {
         id: "e1",
         title: "Affordable Housing Rally",
-        startsAt: new Date().toISOString(),
+        startsAt: "2025-11-15T00:00:00.000Z",
         venue: "City Hall",
-        address: "123 Main St, Nashville, TN",
+        address: "1 Public Square #303, Nashville, TN",
         type: "Rally",
-        link: "https://example.com/rally",
+        link: "https://www.citizenportal.ai/articles/2127867/Tennessee/Nashville-residents-rally-against-controversial-housing-development-on-Wimbledon-Road",
+      },
+      {
+        id: "org1",
+        title: "Nashville Housing Coalition",
+        type: "Organization",
+        description: "Local nonprofit providing tenant support, technical assistance to developers, and community resources for affordable housing.",
+        contact: {
+          website: "https://nashvillehousingcoalition.org",
+          email: "info@nashvillehousingcoalition.org",
+          phone: "(615) 555-0123"
+        }
       },
     ],
     voting: {
-      registerUrl: "https://example.com/register",
-      deadline: new Date().toISOString(),
-      pollingLookupUrl: "https://example.com/polling",
-      notes: "Bring a valid ID to vote.",
+  registerUrl: "https://vote.gov/register",
+  deadline: "2025-11-15T00:00:00.000Z",
+  pollingLookupUrl: "https://www.nashville.gov/departments/elections/register-vote",
+  notes: "Bring a valid ID to vote.",
     },
   };
 }
