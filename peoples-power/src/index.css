@@ -226,3 +226,27 @@ h2 { @apply text-xl md:text-2xl font-semibold; }
     linear-gradient(180deg, rgba(16,20,28,.85), rgba(16,20,28,.55));
   @apply border-white/10;
 }
+
+body {
+  background: radial-gradient(circle at 20% 20%, #1e293b, #0f172a 70%);
+  color: #f1f5f9;
+}
+
+.dark-card {
+  background: rgba(30, 41, 59, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  border-radius: 1rem;
+}
+
+.glow-btn {
+  background: linear-gradient(to right, #3b82f6, #06b6d4);
+  color: white;
+  transition: all 0.2s ease;
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+}
+.glow-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
