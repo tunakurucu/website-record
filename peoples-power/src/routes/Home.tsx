@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import logo from "../../../img folder/pp.png";
+import logo from "/img folder/pp.png";
 
 
 export default function Home() {

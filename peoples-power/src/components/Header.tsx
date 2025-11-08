@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import logo from "../../../img folder/p.png";
+import logo from "/img folder/p.png";
 
 
 export default function Header() {
