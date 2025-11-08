@@ -19,6 +19,9 @@
   },
   "dependencies": {
     "@plasmicapp/loader-nextjs": "^1.0.443",
+    "@plasmicapp/react-web": "^0.2.406",
+    "@plasmicpkgs/plasmic-nav": "^0.0.198",
+    "@plasmicpkgs/react-aria": "^0.0.155",
     "openai": "^6.8.1"
   }
 }
