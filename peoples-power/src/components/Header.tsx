@@ -10,7 +10,7 @@ return (
 <Link to="/">
   <img src={logo} alt="People's Power Logo" className="h-10 w-auto" />
 </Link>
-<nav className="text-sm text-gray-600 flex gap-4">
+<nav className="text-sm text-white flex gap-4">
   <Link to={`/${search}`} className="hover:underline">Home</Link>
   <Link to="/explore" className="hover:underline">Explore</Link>
   <Link to="/contact" className="hover:underline">Contact</Link>
