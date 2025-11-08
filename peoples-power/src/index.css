@@ -74,11 +74,13 @@ body {
 .container { @apply mx-auto max-w-3xl px-4; }
 
 .card {
-  background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.65)) , rgba(var(--card));
+  background: linear-gradient(180deg, rgba(50,50,50,.85), rgba(30,30,30,.75)), rgba(var(--card));
+  color: white; /* Ensures font is visible on dark background */
   @apply rounded-2xl border border-white/30 p-5 shadow-[0_8px_30px_rgba(0,0,0,0.06)] backdrop-blur-md;
 }
 :root.dark .card {
-  background: linear-gradient(180deg, rgba(20,24,32,.85), rgba(16,20,28,.75)), rgba(var(--card));
+  background: linear-gradient(180deg, rgba(30,30,30,.85), rgba(20,20,20,.75)), rgba(var(--card));
+  color: white; /* Ensures font is visible on dark background */
   @apply border-white/10 shadow-none;
 }
 
