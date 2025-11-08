@@ -8,7 +8,7 @@ import os
 
 load_dotenv()
 NEWS_API = os.getenv("NEWS_API")
-GOOG_API = os.getenv("GOOG_API")
+GOOG_API = os.getenv("SERP_API")
 
 def find_keys(obj, target_key):
     results = []
@@ -75,27 +75,31 @@ def req(request_q, lan="", country=""):
                                         sort_by='relevancy')
     
     print(all_articles)
-
-
+    with open("training.txt", 'w', encoding="utf-8") as file:
+        file.write(request_q + "\n\n")
     articles = all_articles['articles']
     if not untrace:
         urls = [a['url'] for a in articles] + goog_req(request_q, ip_dat)
     else:
         urls = [a['url'] for a in articles]
     
-    with open("training.txt", 'a') as file:
+    with open("training.txt", 'a', encoding="utf-8") as file:
         for url in urls:
             try:
                 resp = requests.get(url,  timeout=15)
             except:
                 print("timeout")
-            soup = BeautifulSoup(resp.text, "lxml")
+                continue
+            soup = BeautifulSoup(resp.text, "html.parser")
+            txt = soup.get_text(separator=" ", strip=True)
+            clean_text = " ".join(txt.split())  # normalize whitespace
+
             try:
-                file.write(str({"content": soup.get_text()}))
-            except:
-                print("writing error")
-            print("running")
+                file.write(clean_text + "\n\n")
+                print("running")
+            except Exception as e:
+                print("writing error: ", e)
+            
 
-req("New York")
+#req("New York")
 
-def txtParse()

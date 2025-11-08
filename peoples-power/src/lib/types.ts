@@ -54,3 +54,4 @@ candidates: CandidateRecord[];
 events: CivicEvent[];
 voting: VotingInfo;
 };
+

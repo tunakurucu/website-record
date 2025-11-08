@@ -5,6 +5,18 @@
 
 /* ---------- Design tokens ---------- */
 :root {
+  --bg: 12 14 18;           /* dark background as default */
+  --fg: 235 238 243;
+  --muted: 150 156 170;
+  --primary: 126 155 255;
+  --primary-2: 66 96 255;
+  --accent: 99 255 210;
+  --card: 16 18 24 / 0.6;
+  --ring: 126 155 255;
+  --shadow: 0 0 0 / 0.0;
+}
+
+:root.light {
   --bg: 248 248 255;        /* ghost white */
   --fg: 18 20 23;
   --muted: 110 115 128;
@@ -16,21 +28,14 @@
   --shadow: 18 20 23 / 0.12;
 }
 
-:root.dark {
-  --bg: 12 14 18;
-  --fg: 235 238 243;
-  --muted: 150 156 170;
-  --primary: 126 155 255;
-  --primary-2: 66 96 255;
-  --accent: 99 255 210;
-  --card: 16 18 24 / 0.6;
-  --ring: 126 155 255;
-  --shadow: 0 0 0 / 0.0;
+/* Dark mode by default */
+:root {
+  color-scheme: dark;
 }
 
-/* System dark mode fallback */
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) { color-scheme: dark; }
+/* System light mode override */
+@media (prefers-color-scheme: light) {
+  :root:not(.dark) { color-scheme: light; }
 }
 
 /* ---------- Base layout ---------- */
@@ -74,14 +79,14 @@ body {
 .container { @apply mx-auto max-w-3xl px-4; }
 
 .card {
-  background: linear-gradient(180deg, rgba(50,50,50,.85), rgba(30,30,30,.75)), rgba(var(--card));
-  color: white; /* Ensures font is visible on dark background */
-  @apply rounded-2xl border border-white/30 p-5 shadow-[0_8px_30px_rgba(0,0,0,0.06)] backdrop-blur-md;
-}
-:root.dark .card {
   background: linear-gradient(180deg, rgba(30,30,30,.85), rgba(20,20,20,.75)), rgba(var(--card));
   color: white; /* Ensures font is visible on dark background */
-  @apply border-white/10 shadow-none;
+  @apply rounded-2xl border border-white/10 p-5 shadow-none backdrop-blur-md;
+}
+:root.light .card {
+  background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.65)), rgba(var(--card));
+  color: #1a1a1a; /* Dark text for light background */
+  @apply border-white/30 shadow-[0_8px_30px_rgba(0,0,0,0.06)];
 }
 
 /* Pop card on hover */
