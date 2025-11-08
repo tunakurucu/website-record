@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from serpapi import GoogleSearch
 
 import os
+import sys
 
 load_dotenv()
 NEWS_API = os.getenv("NEWS_API")
@@ -98,4 +99,8 @@ def req(request_q, lan="", country=""):
 
 req("New York")
 
-def txtParse()
+def txtParse():
+    return
+
+if "__main__" == __name__:
+    req(sys.argv[0])
