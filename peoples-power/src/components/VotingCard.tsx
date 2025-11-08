@@ -4,9 +4,9 @@ import { VotingInfo } from "../lib/types";
 export function VotingCard({ voting }: { voting: VotingInfo }) {
 return (
 <article className="card">
-<h2 className="mb-2 text-xl font-semibold">Voting info</h2>
+<h2 className="mb-2 text-xl font-semibold text-title">Voting info</h2>
 {voting.deadline ? (
-<p className="text-sm">
+<p className="text-sm text-body">
 Registration deadline: {new Date(voting.deadline).toLocaleDateString()}
 </p>
 ) : null}
@@ -18,7 +18,7 @@ Check registration
 Find polling place
 </a>
 </div>
-{voting.notes ? <p className="mt-2 text-xs text-gray-600">{voting.notes}</p> : null}
+{voting.notes ? <p className="mt-2 text-xs text-muted">{voting.notes}</p> : null}
 </article>
 );
 }
