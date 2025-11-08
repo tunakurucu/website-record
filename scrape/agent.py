@@ -1,15 +1,17 @@
 import os
 from dotenv import load_dotenv
-from openai import OpenAI 
+import google.generativeai as genai
+
 load_dotenv()
 
-api_key = os.getenv("OPENAI_API_KEY")
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# Set the API key
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
-response = client.chat.completions.create(
-    model="gpt-5",
-    messages=[{"role": "user", "content": "Hello, world!"}]
+# Generate content
+response = genai.generateText(
+    model="gemini-2.5-flash",
+    prompt="Tell me a fun fact about space."
 )
 
-print(response.choices[0].message.content)
+print(response.text)
 
