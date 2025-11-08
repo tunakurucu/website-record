@@ -14,11 +14,11 @@ return (
   <Link to={`/${search}`} className="hover:underline">
     Home
   </Link>
+  <Link to="/explore" className="hover:underline">
+    Explore
+  </Link>
   <Link to="/contact" className="hover:underline">
     Contact
-  </Link>
-  <Link to="/topics" className="hover:underline">
-    Topics
   </Link>
 </nav>
 </div>

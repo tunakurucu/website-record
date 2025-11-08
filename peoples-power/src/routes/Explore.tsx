@@ -13,7 +13,7 @@ interface Topic {
   articles: Article[];
 }
 
-export default function Topics() {
+export default function Explore() {
   const [searchParams] = useSearchParams();
   const searchedTopic = searchParams.get("topic");
   const [expandedTopic, setExpandedTopic] = useState<string | null>(null);
@@ -64,7 +64,7 @@ export default function Topics() {
   return (
     <div className="mx-auto max-w-xl p-6 text-gray-100">
       <header className="mb-8 text-center">
-        <h1 className="text-2xl font-bold">Topics That Matter</h1>
+        <h1 className="text-2xl font-bold">Explore</h1>
         <p className="text-sm text-gray-300">Explore the topics you care about.</p>
       </header>
 
