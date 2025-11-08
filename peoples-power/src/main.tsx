@@ -6,6 +6,9 @@ import "./index.css";
 import App from "./App";
 import Home from "./routes/Home";
 import Results from "./routes/Results";
+import Contact from "./routes/Contact";
+import Topics from "./routes/Explore";
+import Explore from "./routes/Explore";
 
 
 const router = createBrowserRouter([
@@ -15,6 +18,9 @@ element: <App />,
 children: [
 { index: true, element: <Home /> },
 { path: "r", element: <Results /> },
+{ path: "contact", element: <Contact /> },
+{ path: "topics", element: <Topics /> },
+{ path: "explore", element: <Explore /> }, // Updated to use the new Explore component
 ],
 },
 ]);

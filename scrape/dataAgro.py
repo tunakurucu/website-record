@@ -75,31 +75,31 @@ def req(request_q, lan="", country=""):
                                         sort_by='relevancy')
     
     print(all_articles)
-
-
+    with open("training.txt", 'w', encoding="utf-8") as file:
+        file.write(request_q + "\n\n")
     articles = all_articles['articles']
     if not untrace:
         urls = [a['url'] for a in articles] + goog_req(request_q, ip_dat)
     else:
         urls = [a['url'] for a in articles]
     
-    with open("training.txt", 'a') as file:
+    with open("training.txt", 'a', encoding="utf-8") as file:
         for url in urls:
             try:
                 resp = requests.get(url,  timeout=15)
             except:
                 print("timeout")
-            soup = BeautifulSoup(resp.text, "lxml")
-            for script in soup(["script", "style", "img", "a"]):
-                    script.extract()
-            txt : str = soup.get_text()
+                continue
+            soup = BeautifulSoup(resp.text, "html.parser")
+            txt = soup.get_text(separator=" ", strip=True)
+            clean_text = " ".join(txt.split())  # normalize whitespace
+
             try:
-                build = "".join(c if (c.isalpha() or c.isnumeric() or c.isspace()) else " " for c in txt)
-                file.write(build)
+                file.write(clean_text + "\n\n")
                 print("running")
-            except:
-                print("writing error")
+            except Exception as e:
+                print("writing error: ", e)
             
 
-req("New York")
+#req("New York")
 
