@@ -1,3 +1,9 @@
-node_modules
+node_modules/
 .env
-.zshrc
+.env.*
+!.env.example
+dist/
+__pycache__/
+*.py[cod]
+*.tsbuildinfo
+.DS_Store
